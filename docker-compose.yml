@@ -1,14 +1,46 @@
 version: '3'
 services:
     cmaapp1:
-        image: pdebruin/cmaapp1:1
+        image: pdebruin/cmaapp1
         build:
             context: ./cmaapp1/wwwroot/
             dockerfile: Dockerfile
         ports: 
-            - 2901:2901
+            - 2901:80
         networks: 
             - default
+    cmaweb1:
+        image: pdebruin/cmaweb1
+        build:
+            context: ./cmaweb1/wwwroot/
+            dockerfile: Dockerfile
+        ports: 
+            - 8080:80
+        networks: 
+            - default
+        depends_on: 
+            - cmaapp1
+
+    cmapp1:
+        image: pdebruin/cmapp1
+        build:
+            context: ./cmapp1/wwwroot/
+            dockerfile: Dockerfile
+        ports: 
+            - 2902:80
+        networks: 
+            - default
+    cmweb1:
+        image: pdebruin/cmweb1
+        build:
+            context: ./cmweb1/wwwroot/
+            dockerfile: Dockerfile
+        ports: 
+            - 80:80
+        networks: 
+            - default
+        depends_on: 
+            - cmapp1
 
 networks:
     default:
