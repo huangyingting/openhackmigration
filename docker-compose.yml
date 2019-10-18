@@ -1,0 +1,16 @@
+version: '3'
+services:
+    cmaapp1:
+        image: pdebruin/cmaapp1:1
+        build:
+            context: ./cmaapp1/wwwroot/
+            dockerfile: Dockerfile
+        ports: 
+            - 2901:2901
+        networks: 
+            - default
+
+networks:
+    default:
+        external:
+            name: nat
