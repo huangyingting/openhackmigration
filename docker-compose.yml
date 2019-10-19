@@ -20,7 +20,6 @@ services:
             - default
         depends_on: 
             - cmaapp1
-
     cmapp1:
         image: pdebruin/cmapp1
         build:
